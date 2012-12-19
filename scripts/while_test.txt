@@ -1,0 +1,7 @@
+c = 10;
+while (--c) {
+	for (i=0; i<c; i++) {
+		echo ".";
+	}
+	echo "\n";
+}

@@ -1,0 +1,31 @@
+
+# =============================
+#	FUNCTIONS
+# =============================
+
+function test (arr) {
+	sum = 0.0;
+	for (i=0; i<count (arr); i++) {
+		sum = sum + pow (arr [i], 2);
+	}
+	return sqrt (sum);
+}
+
+# =============================
+#	MAIN PART
+# =============================
+
+a = collection;
+
+echo "\n\n";
+echo "How many parameters:\n> ";
+num = stoi (getch ());
+
+echo "\n";
+for (i=0; i<num; i++) {
+	echo "Enter parameter ", i, ": \n> ";
+	a [i] = stoi (getch ());
+}
+
+echo "\n";
+echo "Result: ", test (a), "\n";

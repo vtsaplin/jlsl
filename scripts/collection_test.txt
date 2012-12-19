@@ -1,0 +1,38 @@
+a = collection;
+
+echo "\n\n---------------------------\n";
+
+a [1 ] = "apple";
+a [2 ] = "qwed";
+a [3 ] = "wefweg";
+a [7 ] = "tryhrb";
+a [15] = "wefwef";
+a [26] = "cs3re";
+a [29] = "4wef";
+
+echo "\ncount=", count (a), "\n\n";
+
+for (begin (a); !is_end (a); forward (a)) {
+	k = get_key (a);
+	if (k == "7" || k == "15") {
+		remove (a);
+	} else {
+		echo "key=", k, ", value=", a [get_key (a)], "\n";
+	}
+}
+
+echo "\n---------------------------\n";
+
+sum = 0;
+for (begin (a); !is_end (a); forward (a)) {
+	sum = sum + stoi (get_key (a));
+}
+echo "\nsum of all keys: ", sum, "\n";
+
+echo "\n---------------------------\n";
+
+if (find (a, "26")) {
+	echo "\nyes!";
+} else {
+	echo "\nno!";
+}

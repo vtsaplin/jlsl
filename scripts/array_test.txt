@@ -1,0 +1,11 @@
+
+a = createArray (10);
+a [1] = 1;
+a [9] = 9;
+
+echo count (a);
+
+echo "\n---------\n";
+for (begin (a); !is_end (a); forward (a)) {
+	echo "value=", current (a), "\n";
+}

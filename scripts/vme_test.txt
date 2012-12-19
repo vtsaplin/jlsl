@@ -1,0 +1,127 @@
+
+#------------------------------------------------------
+#	Functions
+#------------------------------------------------------
+
+function getTimeSec (base) 
+{
+	echo ("Current time: ", peek (base + 0xA0), "\n");
+}
+
+function readMemory (base)
+{
+	# ask for offset
+	echo ("\n\nEnter memory offset:\n>");
+	offset = stoi (getch ());
+	
+	# read memory
+	echo ("Value: ", peek (base + offset), "\n");
+}
+
+function getBinaryStr (val)
+{
+	s = "";
+	for (i=31; i>=0; i--) {
+		s = s + ((val >> i) & 1);
+		if (!(i % 16) && i) {
+			s = s + " : ";
+		} else if (!(i % 4)) {
+			s = s + " ";
+		}
+	}
+	return s;
+}
+
+function memoryDump (base)
+{
+	# ask for offset
+	echo ("\n\nEnter memory offset:\n>");
+	offset = stoi (getch ());
+
+	# ask for amount
+	echo ("\n\nHow many 32-bit values do you want to read?:\n>");
+	count = stoi (getch ());
+	
+	# read memory
+	for (i=0; i<count; i++) {
+		r = peek (base + offset + i*4);
+		print ("\n0x%h\t: 0x%h\t =>\t %s", offset + i*4, r, getBinaryStr (r));
+	}
+	echo ("\n");
+}
+
+function writeMemory (base) 
+{
+	# ask for offset
+	echo ("\n\nEnter memory offset:\n>");
+	offset = stoi (getch ());
+
+	# ask for value
+	echo ("\nEnter value to write:\n>");
+	value = stoi (getch ());
+	
+	# write memory
+	poke (base + offset, value);
+}
+
+function mainLoop () 
+{
+	# ask for base address
+	echo ("\n\nEnter base address:> ");
+	baseAddress = stoi (getch ());
+
+	# exit flag
+	quit = false;
+	
+	# main loop
+	while (!quit) 
+	{
+		# command prompt
+		echo ("\n\n------------------------------\n");
+		echo ("[4] - Current time (sec)\n");
+		echo ("[3] - Memory Dump\n");
+		echo ("[2] - Read memory\n");
+		echo ("[1] - Write memory\n");
+		echo ("[0] - Quit\n");	
+		echo ("------------------------------\n>");
+		
+		# here we are waiting for user input
+		ch = getch ();
+		
+		# what are we going to do?
+		select (ch) 
+		{
+		case "4":
+			getTimeSec (baseAddress);
+			break;
+
+		case "3":
+			memoryDump (baseAddress);
+			break;
+
+		case "2":
+			readMemory (baseAddress);
+			break;
+
+		case "1":
+			writeMemory (baseAddress);
+			break;
+
+		case "0":
+			quit = true;
+			break;
+
+		default:
+			echo ("\nUnknown command.\n");
+		}
+	}
+}
+
+#------------------------------------------------------
+#	Main Part
+#------------------------------------------------------
+
+# start program loop
+mainLoop ();
+
+

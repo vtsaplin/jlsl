@@ -1,0 +1,9 @@
+
+a = collection;
+
+a [1] = "test";
+a [2] = "15";
+
+for (begin (a); !is_end (a); forward (a)) {
+	echo current (a), "\n";
+}

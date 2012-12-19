@@ -1,0 +1,16 @@
+
+a = 0x34000000U;
+
+function showBits (val)
+{
+	for (i=31; i>=0; i--) {
+		print ("%d ", (val >> i) & 1);
+		if (!(i % 16)) {
+			echo ("\n");
+		} else if (!(i % 4)) {
+			echo ("   ");
+		}
+	}
+}
+
+showBits (a);

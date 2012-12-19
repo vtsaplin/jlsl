@@ -1,0 +1,16 @@
+a = 2 * 7 % 4;
+echo "value: ", a, "\n";
+
+select ("test"+"this") {
+case "test":
+	echo "ok\n";
+	break;
+case "testthis":
+	echo "bad\n";
+	break;
+default:
+	echo "idontknow\n";
+	break;
+}
+
+echo "hello\n";
